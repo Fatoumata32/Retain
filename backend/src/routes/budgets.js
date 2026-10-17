@@ -23,7 +23,12 @@ export async function getBudgetSummary(userId, month) {
     budget,
     spent,
     remaining: budget === null ? null : Number((budget - spent).toFixed(2)),
-    percentUsed: budget ? Number(((spent / budget) * 100).toFixed(1)) : null,
+    percentUsed:
+      budget !== null && budget > 0
+        ? Number(((spent / budget) * 100).toFixed(1))
+        : budget === 0
+          ? (spent > 0 ? 100 : 0)
+          : null,
     status: budgetStatus(spent, budget),
   };
 }

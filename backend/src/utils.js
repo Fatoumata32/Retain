@@ -16,7 +16,8 @@ export function monthRange(month) {
 }
 
 export function budgetStatus(spent, budget) {
-  if (!budget || budget <= 0) return 'no-budget';
+  if (budget === null || budget === undefined) return 'no-budget';
+  if (budget <= 0) return spent > 0 ? 'over' : 'within';
   const ratio = spent / budget;
   if (ratio > 1) return 'over';
   if (ratio >= 0.8) return 'approaching';
