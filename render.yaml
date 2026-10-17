@@ -1,0 +1,31 @@
+# Render Blueprint: provisions the API and a Postgres database.
+# Deploy the frontend separately on Vercel or Netlify (see README).
+databases:
+  - name: retain-db
+    plan: free
+
+services:
+  - type: web
+    name: retain-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: retain-db
+          property: connectionString
+      - key: DATABASE_SSL
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_ORIGIN
+        sync: false # set to your deployed frontend URL
+      - key: ADMIN_NAME
+        value: Retain Admin
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
