@@ -15,7 +15,9 @@ if (!process.env.JWT_SECRET) {
 }
 
 const app = express();
-const origins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173').split(',').map((s) => s.trim());
+const defaultOrigins = ['http://localhost:5173', 'https://retain-one.vercel.app'];
+const envOrigins = (process.env.CLIENT_ORIGIN || '').split(',').map((s) => s.trim()).filter(Boolean);
+const origins = Array.from(new Set([...defaultOrigins, ...envOrigins]));
 
 app.use(cors({ origin: origins }));
 app.use(express.json({ limit: '100kb' }));

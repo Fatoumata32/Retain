@@ -22,7 +22,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_ORIGIN
-        sync: false # set to your deployed frontend URL
+        value: "https://retain-one.vercel.app"
       - key: ADMIN_NAME
         value: Retain Admin
       - key: ADMIN_EMAIL
