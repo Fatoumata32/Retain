@@ -2,8 +2,8 @@
 
 Retain lets people record expenses, search and filter them, set a monthly budget and see where their money goes. Admins manage expense categories and see platform-wide insights.
 
-**Live application:** `https://YOUR-FRONTEND-URL` (replace after deploying; see [Deployment](#deployment))
-**API:** `https://YOUR-API-URL/api`
+**Live application:** https://retain-one.vercel.app
+**API:** https://retain-ws4p.onrender.com/api
 
 ## Technologies
 
